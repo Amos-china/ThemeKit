@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (5.12.2)
+  - ThemeKit (0.1.0):
+    - Alamofire (~> 5.12)
+    - ZIPFoundation (~> 0.9)
+  - ZIPFoundation (0.9.20)
+
+DEPENDENCIES:
+  - ThemeKit (from `../../`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - ZIPFoundation
+
+EXTERNAL SOURCES:
+  ThemeKit:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  Alamofire: c5f37d8f438dc1d7fd3ff767f2f80fd01ca381d7
+  ThemeKit: 953cda8bb736cee0fb86f0603c68635537cdc4af
+  ZIPFoundation: dfd3d681c4053ff7e2f7350bc4e53b5dba3f5351
+
+PODFILE CHECKSUM: 7c7e769ae4addb63e179d50c98c75e947c37e5e0
+
+COCOAPODS: 1.16.2

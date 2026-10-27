@@ -1,0 +1,63 @@
+name: ThemeKitDemo
+options:
+  bundleIdPrefix: com.amoschina
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+targets:
+  ThemeKitDemo:
+    type: application
+    platform: iOS
+    sources:
+      - path: .
+        excludes:
+          - project.yml
+          - Podfile
+          - Podfile.lock
+          - Pods
+          - ThemeKitDemo.xcodeproj
+          - ThemeKitDemo.xcworkspace
+          - ThemePackages
+    preBuildScripts:
+      - name: Copy bundled themes
+        basedOnDependencyAnalysis: false
+        script: |
+          set -e
+          mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
+          cp "${SRCROOT}/ThemePackages/ThemeEmber.zip" "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/"
+          cp "${SRCROOT}/ThemePackages/ThemeTide.zip" "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.amoschina.ThemeKitDemo
+        INFOPLIST_FILE: Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        TARGETED_DEVICE_FAMILY: "1,2"
+  ThemeKitDemoTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ../ThemeKitDemoTests
+      - path: ../../Tests/ThemeKitTests
+    resources:
+      - path: ../ThemeKitDemoTests/Fixtures
+        buildPhase: resources
+    dependencies:
+      - target: ThemeKitDemo
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.amoschina.ThemeKitDemoTests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  ThemeKitDemo:
+    build:
+      targets:
+        ThemeKitDemo: all
+        ThemeKitDemoTests: [test]
+    test:
+      targets:
+        - ThemeKitDemoTests
