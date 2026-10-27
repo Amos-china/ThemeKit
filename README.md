@@ -1,5 +1,7 @@
 # ThemeKit
 
+English | [简体中文](README.zh-CN.md)
+
 ThemeKit is a small UIKit library for downloading ZIP theme packages with
 Alamofire, installing them safely with ZIPFoundation, and loading scale-aware
 PNG resources from the app sandbox.
